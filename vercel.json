@@ -1,16 +1,8 @@
 {
   "crons": [
     {
-      "path": "/api/cron/smartphones",
-      "schedule": "0 2 * * *"
-    },
-    {
-      "path": "/api/cron/prices",
-      "schedule": "0 */4 * * *"
-    },
-    {
-      "path": "/api/cron/news",
-      "schedule": "30 */6 * * *"
+      "path": "/api/cron/daily",
+      "schedule": "0 4 * * *"
     }
   ],
   "headers": [

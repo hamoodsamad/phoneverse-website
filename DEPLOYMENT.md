@@ -43,13 +43,11 @@ Add the following keys in **Settings** > **Environment Variables**:
 | `CLOUDINARY_API_SECRET` | Cloudinary Secret | `abc...` |
 | `PAYMENT_GATEWAY_PROVIDER` | Active Payment Provider | `cod` |
 
-### Step 4: Vercel Cron Jobs Verification
-`vercel.json` is configured with 3 automatic scheduled tasks:
-* `0 2 * * *`: Smartphone Discovery (`/api/cron/smartphones`)
-* `0 */4 * * *`: Retailer Price Tracker (`/api/cron/prices`)
-* `30 */6 * * *`: Technology News Feed Collection (`/api/cron/news`)
+### Step 4: Vercel Cron Jobs (Hobby & Pro Compatible)
+`vercel.json` is configured with an automated daily synchronization task:
+* `0 4 * * *`: Daily Discovery & Price Tracker (`/api/cron/daily`) - 100% compatible with Vercel Hobby Free Tier.
 
-Vercel activates these automatically upon deployment.
+Vercel activates this cron automatically upon deployment. You can also trigger manual synchronizations at any time from the Admin Dashboard.
 
 ---
 
