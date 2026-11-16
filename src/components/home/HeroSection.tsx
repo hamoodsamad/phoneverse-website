@@ -21,49 +21,50 @@ export function HeroSection({ flagships }: HeroSectionProps) {
   if (!activePhone) return null;
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-16 md:py-20 bg-gradient-to-b from-dark-900 via-dark-800/60 to-dark-900 border-b border-gray-800/80">
+    <section className="relative overflow-hidden w-full max-w-full pt-8 pb-16 md:py-20 bg-gradient-to-b from-dark-900 via-dark-800/60 to-dark-900 border-b border-gray-800/80">
       {/* Background glow meshes */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full max-w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Heading, Value Props & Actions */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             {/* Pills row */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <a
                 href={siteConfig.portfolioUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-purple-500/20 border border-emerald-400/60 hover:border-emerald-300 text-white text-xs font-black transition-all shadow-glow hover:scale-105"
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-purple-500/20 border border-emerald-400/60 hover:border-emerald-300 text-white text-[11px] sm:text-xs font-black transition-all shadow-glow hover:scale-105 shrink-0"
               >
-                <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" />
+                <ArrowLeft className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                 <span>← Back to Portfolio</span>
               </a>
 
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-semibold backdrop-blur-md">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Next-Gen 2026 Smartphone Intelligence • Pakistan Market</span>
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-[11px] sm:text-xs font-semibold backdrop-blur-md max-w-full truncate">
+                <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Next-Gen 2026 Smartphone Intelligence • Pakistan Market</span>
+                <span className="sm:hidden truncate">2026 Intelligence • PK Market</span>
               </div>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.1]">
-              Discover, Compare & Track <br />
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.1] break-words">
+              Discover, Compare & Track <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-purple-400">
                 Flagship Smartphones
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-lg text-gray-300 leading-relaxed max-w-2xl">
               Real-time Pakistani retail prices in PKR, verified PTA Approved status, deep silicon comparisons, and instant AI-tailored recommendations.
             </p>
 
             {/* Quick CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-2">
               <Link
                 href="/smartphones"
-                className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-dark-900 font-extrabold px-6 py-3.5 rounded-2xl text-sm transition-all shadow-glow"
+                className="flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-dark-900 font-extrabold px-6 py-3.5 rounded-2xl text-sm transition-all shadow-glow text-center"
               >
                 <span>Browse All Phones</span>
                 <ArrowRight className="w-4 h-4" />
@@ -71,23 +72,23 @@ export function HeroSection({ flagships }: HeroSectionProps) {
 
               <Link
                 href="/ai-recommendations"
-                className="flex items-center gap-2 glass-panel hover:border-purple-500/50 text-white font-bold px-6 py-3.5 rounded-2xl text-sm transition-all shadow-lg"
+                className="flex items-center justify-center gap-2 glass-panel hover:border-purple-500/50 text-white font-bold px-6 py-3.5 rounded-2xl text-sm transition-all shadow-lg text-center"
               >
-                <Sparkles className="w-4 h-4 text-purple-400" />
+                <Sparkles className="w-4 h-4 text-purple-400 shrink-0" />
                 <span>AI Recommendation Wizard</span>
               </Link>
 
               <Link
                 href="/compare"
-                className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold px-4 py-3.5 text-sm"
+                className="flex items-center justify-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold px-4 py-2 sm:py-3.5 text-sm text-center"
               >
-                <Scale className="w-4 h-4" />
+                <Scale className="w-4 h-4 shrink-0" />
                 <span>Side-by-Side Compare</span>
               </Link>
             </div>
 
             {/* Market Trust Badges */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-800/80 text-xs text-gray-400">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-gray-800/80 text-xs text-gray-400">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
                 <span>100% Verified PTA & Official Warranties</span>
@@ -188,7 +189,7 @@ export function HeroSection({ flagships }: HeroSectionProps) {
                   </div>
                 )}
 
-                <div className="pt-2 flex items-center gap-3">
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
                   <Link
                     href={`/smartphones/${activePhone.slug}`}
                     className="flex-1 text-center bg-gray-800 hover:bg-gray-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors"

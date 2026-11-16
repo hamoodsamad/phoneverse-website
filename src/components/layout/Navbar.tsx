@@ -85,36 +85,37 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-gray-800/80 bg-dark-900/85 backdrop-blur-xl">
       {/* Top micro bar for market and live status */}
-      <div className="bg-emerald-950/40 border-b border-emerald-900/20 py-1.5 px-4 text-[11px] text-gray-300 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="bg-emerald-950/40 border-b border-emerald-900/20 py-1.5 px-3 sm:px-4 text-[11px] text-gray-300 flex items-center justify-between gap-2 overflow-hidden w-full max-w-full">
+        <div className="flex items-center gap-2 shrink-0">
           <a
             href={siteConfig.portfolioUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/50 text-emerald-300 hover:text-white hover:border-emerald-400 font-extrabold transition-all shadow-sm hover:scale-105"
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/50 text-emerald-300 hover:text-white hover:border-emerald-400 font-extrabold transition-all shadow-sm text-[10px] sm:text-[11px] whitespace-nowrap"
           >
-            <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" />
+            <ArrowLeft className="w-3 h-3 text-emerald-400 shrink-0" />
             <span>Back to Portfolio</span>
           </a>
 
-          <div className="hidden sm:flex items-center gap-2 text-gray-400">
-            <span className="flex h-2 w-2 relative">
+          <div className="hidden lg:flex items-center gap-2 text-gray-400 truncate">
+            <span className="flex h-2 w-2 relative shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span>🇵🇰 <strong>Pakistan Market Official:</strong> PTA Approved & Retail Verified Smartphone Index</span>
+            <span className="truncate">🇵🇰 <strong>Pakistan Market Official:</strong> PTA Approved & Retail Verified Smartphone Index</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <Link href="/news" className="hover:text-emerald-400 transition-colors hidden sm:inline">
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0 text-[10px] sm:text-[11px]">
+          <Link href="/news" className="hover:text-emerald-400 transition-colors hidden md:inline">
             Tech News 2026
           </Link>
           <Link href="/reviews" className="hover:text-emerald-400 transition-colors hidden sm:inline">
             Verified Reviews
           </Link>
-          <Link href="/price-tracker" className="text-emerald-400 hover:underline flex items-center gap-1 font-semibold">
-            <TrendingDown className="w-3 h-3" /> Live Price Drops
+          <Link href="/price-tracker" className="text-emerald-400 hover:underline flex items-center gap-1 font-semibold whitespace-nowrap">
+            <TrendingDown className="w-3 h-3 shrink-0" />
+            <span>Price Drops</span>
           </Link>
         </div>
       </div>
@@ -249,11 +250,11 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Compare Badge */}
+          {/* Compare Badge (Hidden on mobile to prevent overflow) */}
           <Link
             href="/compare"
             title="Comparison Tray"
-            className="relative p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-cyan-400 hover:border-cyan-500 transition-colors"
+            className="hidden md:flex relative p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-cyan-400 hover:border-cyan-500 transition-colors"
           >
             <Scale className="w-4 h-4" />
             {compareCount > 0 && (
@@ -263,11 +264,11 @@ export function Navbar() {
             )}
           </Link>
 
-          {/* Wishlist Badge */}
+          {/* Wishlist Badge (Hidden on mobile to prevent overflow) */}
           <Link
             href="/wishlist"
             title="Wishlist"
-            className="relative p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-rose-400 hover:border-rose-500 transition-colors"
+            className="hidden md:flex relative p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-rose-400 hover:border-rose-500 transition-colors"
           >
             <Heart className="w-4 h-4" />
             {wishlistCount > 0 && (
@@ -354,6 +355,10 @@ export function Navbar() {
             <Link href="/compare" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800 flex items-center justify-between">
               <span>⚖️ Smartphone Comparison</span>
               {compareCount > 0 && <span className="bg-cyan-500 text-dark-900 text-xs font-bold px-2 py-0.5 rounded-full">{compareCount}</span>}
+            </Link>
+            <Link href="/wishlist" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800 flex items-center justify-between">
+              <span>❤️ Saved Wishlist</span>
+              {wishlistCount > 0 && <span className="bg-rose-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">{wishlistCount}</span>}
             </Link>
             <Link href="/price-tracker" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800">
               📉 Price Drop Tracker (PKR)

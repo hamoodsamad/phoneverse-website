@@ -9,24 +9,24 @@ export function UpcomingSection({ phones }: { phones: Smartphone[] }) {
 
   return (
     <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800/60">
-      <div className="flex items-end justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-8">
         <div>
           <div className="flex items-center gap-1.5 text-purple-400 text-xs font-bold uppercase tracking-wider mb-1">
-            <Eye className="w-4 h-4" />
+            <Eye className="w-4 h-4 shrink-0" />
             Anticipated Next-Gen Devices
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-white">
             Upcoming & Rumored Smartphones
           </h2>
           <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
-            <AlertTriangle className="w-3.5 h-3.5 text-purple-400" />
-            Unconfirmed specifications are clearly identified and sourced from verified supply chain leaks.
+            <AlertTriangle className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+            <span>Unconfirmed specifications are clearly identified and sourced from verified supply chain leaks.</span>
           </p>
         </div>
 
         <Link
           href="/smartphones/upcoming"
-          className="text-xs sm:text-sm font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1"
+          className="text-xs sm:text-sm font-bold text-purple-400 hover:text-purple-300 flex items-center gap-1 shrink-0"
         >
           <span>All Upcoming</span>
           <ArrowRight className="w-4 h-4" />

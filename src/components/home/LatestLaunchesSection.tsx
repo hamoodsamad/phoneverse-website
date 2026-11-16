@@ -9,10 +9,10 @@ export function LatestLaunchesSection({ phones }: { phones: Smartphone[] }) {
 
   return (
     <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800/60">
-      <div className="flex items-end justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-8">
         <div>
           <div className="flex items-center gap-1.5 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-1">
-            <Sparkles className="w-4 h-4" />
+            <Sparkles className="w-4 h-4 shrink-0" />
             Newly Announced & Released
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-white">
@@ -22,7 +22,7 @@ export function LatestLaunchesSection({ phones }: { phones: Smartphone[] }) {
 
         <Link
           href="/smartphones/latest"
-          className="text-xs sm:text-sm font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+          className="text-xs sm:text-sm font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 shrink-0"
         >
           <span>View All Launches</span>
           <ArrowRight className="w-4 h-4" />

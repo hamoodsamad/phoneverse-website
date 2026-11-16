@@ -278,7 +278,7 @@ export function SmartphoneDetailView({ phone, reviews: initialReviews }: Smartph
 
             <Link
               href={`/compare?phone1=${phone.slug}`}
-              className="px-4 py-3.5 rounded-2xl bg-gray-900 border border-gray-700 text-cyan-400 hover:bg-gray-800 text-xs font-bold flex items-center gap-1.5"
+              className="w-full sm:w-auto justify-center px-4 py-3.5 rounded-2xl bg-gray-900 border border-gray-700 text-cyan-400 hover:bg-gray-800 text-xs font-bold flex items-center gap-1.5"
             >
               <Scale className="w-4 h-4" />
               <span>Compare vs Other Phones</span>
@@ -288,40 +288,40 @@ export function SmartphoneDetailView({ phone, reviews: initialReviews }: Smartph
       </div>
 
       {/* Tabs navigation */}
-      <div className="border-b border-gray-800 mb-8 flex gap-8 text-sm font-bold">
+      <div className="border-b border-gray-800 mb-8 flex items-center gap-4 sm:gap-8 text-xs sm:text-sm font-bold overflow-x-auto pb-1 w-full max-w-full">
         <button
           onClick={() => setActiveTab('specs')}
-          className={`pb-3 flex items-center gap-2 transition-colors border-b-2 ${
+          className={`pb-3 flex items-center gap-2 shrink-0 transition-colors border-b-2 whitespace-nowrap ${
             activeTab === 'specs'
               ? 'border-emerald-500 text-emerald-400'
               : 'border-transparent text-gray-400 hover:text-white'
           }`}
         >
-          <Sliders className="w-4 h-4" />
+          <Sliders className="w-4 h-4 shrink-0" />
           <span>Full Technical Specifications</span>
         </button>
 
         <button
           onClick={() => setActiveTab('prices')}
-          className={`pb-3 flex items-center gap-2 transition-colors border-b-2 ${
+          className={`pb-3 flex items-center gap-2 shrink-0 transition-colors border-b-2 whitespace-nowrap ${
             activeTab === 'prices'
               ? 'border-emerald-500 text-emerald-400'
               : 'border-transparent text-gray-400 hover:text-white'
           }`}
         >
-          <TrendingDown className="w-4 h-4" />
+          <TrendingDown className="w-4 h-4 shrink-0" />
           <span>Pakistan Merchant Prices ({phone.prices?.length || 0})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('reviews')}
-          className={`pb-3 flex items-center gap-2 transition-colors border-b-2 ${
+          className={`pb-3 flex items-center gap-2 shrink-0 transition-colors border-b-2 whitespace-nowrap ${
             activeTab === 'reviews'
               ? 'border-emerald-500 text-emerald-400'
               : 'border-transparent text-gray-400 hover:text-white'
           }`}
         >
-          <Star className="w-4 h-4" />
+          <Star className="w-4 h-4 shrink-0" />
           <span>Customer Reviews ({reviewsList.length})</span>
         </button>
       </div>

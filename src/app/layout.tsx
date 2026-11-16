@@ -24,11 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen flex flex-col justify-between bg-dark-900 text-gray-100 selection:bg-emerald-500 selection:text-dark-900">
+    <html lang="en" className="dark overflow-x-hidden">
+      <body className="min-h-screen w-full max-w-full overflow-x-hidden flex flex-col justify-between bg-dark-900 text-gray-100 selection:bg-emerald-500 selection:text-dark-900">
         <Providers>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
           <CompareFloatingBar />
           <Footer />
         </Providers>

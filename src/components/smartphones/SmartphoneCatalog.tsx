@@ -119,7 +119,7 @@ export function SmartphoneCatalog({
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-transparent text-white font-semibold focus:outline-none cursor-pointer"
+              className="bg-transparent text-white font-semibold focus:outline-none cursor-pointer max-w-[130px] sm:max-w-none truncate"
             >
               <option value="featured" className="bg-dark-900">Featured & Trending</option>
               <option value="price_asc" className="bg-dark-900">Price: Low to High</option>

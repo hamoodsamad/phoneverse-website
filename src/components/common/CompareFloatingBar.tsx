@@ -15,13 +15,13 @@ export function CompareFloatingBar() {
     <aside aria-label="Smartphone Comparison Dock" className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-3xl glass-panel bg-dark-900/90 border border-cyan-500/30 rounded-2xl p-3 shadow-2xl backdrop-blur-xl animate-fade-in-up">
       <div className="flex items-center justify-between gap-3">
         {/* Left header */}
-        <div className="flex items-center gap-2">
-          <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-400">
-            <Scale className="w-5 h-5" />
+        <div className="flex items-center gap-2 shrink-0">
+          <div className="p-1.5 sm:p-2 rounded-xl bg-cyan-500/20 text-cyan-400">
+            <Scale className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
           <div>
-            <div className="text-xs font-bold text-white uppercase tracking-wider">Compare Dock</div>
-            <div className="text-[11px] text-gray-400">{selectedPhones.length} of 4 selected</div>
+            <div className="text-xs font-bold text-white uppercase tracking-wider hidden sm:block">Compare Dock</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-400 whitespace-nowrap">{selectedPhones.length}/4 selected</div>
           </div>
         </div>
 

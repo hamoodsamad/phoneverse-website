@@ -679,7 +679,7 @@ export function AdminDashboardView({
               </div>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto w-full max-w-full">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
                   <tr className="border-b border-gray-800 text-[11px] font-bold text-gray-400 uppercase tracking-wider">
@@ -834,7 +834,7 @@ export function AdminDashboardView({
           </div>
 
           {/* Catalog Table */}
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto w-full max-w-full">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
                 <tr className="border-b border-gray-800 text-[11px] font-bold text-gray-400 uppercase tracking-wider">

@@ -24,7 +24,7 @@ export function Footer() {
             </p>
           </div>
 
-          <form onSubmit={(e) => e.preventDefault()} className="flex items-center w-full md:w-auto max-w-md gap-2">
+          <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row items-stretch sm:items-center w-full md:w-auto max-w-md gap-2">
             <input
               type="email"
               placeholder="Enter your email address..."
@@ -32,7 +32,7 @@ export function Footer() {
             />
             <button
               type="submit"
-              className="bg-emerald-500 hover:bg-emerald-400 text-dark-900 font-bold px-5 py-2.5 rounded-xl text-sm shrink-0 transition-colors shadow-glow"
+              className="bg-emerald-500 hover:bg-emerald-400 text-dark-900 font-bold px-5 py-2.5 rounded-xl text-sm shrink-0 transition-colors shadow-glow text-center"
             >
               Subscribe
             </button>
@@ -41,9 +41,9 @@ export function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-2 md:grid-cols-5 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
         {/* Brand & Market Note */}
-        <div className="col-span-2">
+        <div className="col-span-1 sm:col-span-2">
           <Link href="/" className="flex items-center gap-2 mb-4">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center text-dark-900 font-black">
               <Phone className="w-5 h-5 text-dark-900 fill-current" />
@@ -109,18 +109,18 @@ export function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-800/80 py-6 text-xs text-gray-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-1">
             <span>© 2026 PhoneVerse Platform. All rights reserved. Primary Market: Pakistan (PKR).</span>
             <Link
               href="/admin"
               title="Admin Portal"
-              className="inline-flex text-gray-800 hover:text-gray-400 ml-2 transition-colors p-1"
+              className="inline-flex text-gray-800 hover:text-gray-400 ml-1 transition-colors p-1"
             >
               <Lock className="w-3 h-3" />
             </Link>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 sm:gap-6 text-center text-[11px] sm:text-xs">
             <span>Primary Currency: <strong>PKR (₨)</strong></span>
             <span>Data Sources: GSMArena, PriceOye, Daraz Official, Official Brand Stores</span>
           </div>

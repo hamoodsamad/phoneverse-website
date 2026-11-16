@@ -7,10 +7,10 @@ import { Newspaper, ArrowRight, ExternalLink, Calendar } from 'lucide-react';
 export function TechNewsSection({ news }: { news: NewsArticle[] }) {
   return (
     <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800/60">
-      <div className="flex items-end justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-8">
         <div>
           <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-1">
-            <Newspaper className="w-4 h-4" />
+            <Newspaper className="w-4 h-4 shrink-0" />
             2026 Mobile Ecosystem
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-white">
@@ -20,7 +20,7 @@ export function TechNewsSection({ news }: { news: NewsArticle[] }) {
 
         <Link
           href="/news"
-          className="text-xs sm:text-sm font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+          className="text-xs sm:text-sm font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1 shrink-0"
         >
           <span>All News Articles</span>
           <ArrowRight className="w-4 h-4" />

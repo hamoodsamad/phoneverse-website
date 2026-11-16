@@ -17,10 +17,10 @@ export function PriceDropsSection({ phones }: { phones: Smartphone[] }) {
 
   return (
     <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800/60">
-      <div className="flex items-end justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-8">
         <div>
           <div className="flex items-center gap-1.5 text-rose-400 text-xs font-bold uppercase tracking-wider mb-1">
-            <TrendingDown className="w-4 h-4" />
+            <TrendingDown className="w-4 h-4 shrink-0" />
             Verified Pakistan Retail Discounts
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-white">
@@ -30,7 +30,7 @@ export function PriceDropsSection({ phones }: { phones: Smartphone[] }) {
 
         <Link
           href="/price-tracker"
-          className="text-xs sm:text-sm font-bold text-rose-400 hover:text-rose-300 flex items-center gap-1"
+          className="text-xs sm:text-sm font-bold text-rose-400 hover:text-rose-300 flex items-center gap-1 shrink-0"
         >
           <span>View All Price Drops</span>
           <ArrowRight className="w-4 h-4" />

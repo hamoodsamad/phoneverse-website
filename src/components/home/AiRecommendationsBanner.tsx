@@ -15,7 +15,7 @@ export function AiRecommendationsBanner() {
             AI-Powered Personalized Recommendations
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight">
+          <h2 className="text-2xl sm:text-4xl font-black text-white leading-tight">
             Confused About Which Phone to Buy in Pakistan? Let AI Find Your Exact Match.
           </h2>
 
@@ -25,15 +25,15 @@ export function AiRecommendationsBanner() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs text-gray-300">
             <div className="flex items-center gap-2 bg-dark-900/60 p-3 rounded-xl border border-gray-800">
-              <Target className="w-4 h-4 text-purple-400" />
+              <Target className="w-4 h-4 text-purple-400 shrink-0" />
               <span>Budget Centric PKR Matching</span>
             </div>
             <div className="flex items-center gap-2 bg-dark-900/60 p-3 rounded-xl border border-gray-800">
-              <Zap className="w-4 h-4 text-cyan-400" />
+              <Zap className="w-4 h-4 text-cyan-400 shrink-0" />
               <span>Thermal & Gaming Analysis</span>
             </div>
             <div className="flex items-center gap-2 bg-dark-900/60 p-3 rounded-xl border border-gray-800">
-              <Sliders className="w-4 h-4 text-emerald-400" />
+              <Sliders className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>PTA Duty & Warranty Filter</span>
             </div>
           </div>
@@ -41,7 +41,7 @@ export function AiRecommendationsBanner() {
           <div className="pt-4">
             <Link
               href="/ai-recommendations"
-              className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-black px-7 py-3.5 rounded-2xl text-sm transition-all shadow-lg hover:shadow-purple-500/25"
+              className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-purple-600 hover:bg-purple-500 text-white font-black px-7 py-3.5 rounded-2xl text-sm transition-all shadow-lg hover:shadow-purple-500/25 text-center"
             >
               <span>Launch AI Smartphone Advisor</span>
               <ArrowRight className="w-4 h-4" />

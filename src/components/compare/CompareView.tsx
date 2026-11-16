@@ -149,13 +149,13 @@ export function CompareView({ allPhones }: CompareViewProps) {
         <div className="space-y-10">
           {/* AI Comparative Executive Verdict */}
           {comparisonResult && (
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-purple-500/30 bg-gradient-to-r from-purple-950/30 via-dark-900 to-cyan-950/30 space-y-6">
-              <div className="flex items-center justify-between">
+            <div className="glass-panel p-5 sm:p-8 rounded-3xl border border-purple-500/30 bg-gradient-to-r from-purple-950/30 via-dark-900 to-cyan-950/30 space-y-6 w-full max-w-full">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider">
-                  <Sparkles className="w-4 h-4" />
-                  <span>AI Comparison Engine • {comparisonResult.isAiGenerated ? 'OpenAI GPT-4o' : 'Verified Hardware Evaluator'}</span>
+                  <Sparkles className="w-4 h-4 shrink-0" />
+                  <span>AI Comparison Engine • {comparisonResult.isAiGenerated ? 'OpenAI GPT-4o' : 'Hardware Evaluator'}</span>
                 </div>
-                <span className="text-[11px] text-gray-400 bg-dark-900/80 px-2.5 py-1 rounded-full border border-gray-800">
+                <span className="text-[11px] text-gray-400 bg-dark-900/80 px-2.5 py-1 rounded-full border border-gray-800 shrink-0 w-fit">
                   PTA & Pakistan Retail Calibrated
                 </span>
               </div>
@@ -222,8 +222,8 @@ export function CompareView({ allPhones }: CompareViewProps) {
           )}
 
           {/* SIDE-BY-SIDE MATRIX TABLE */}
-          <div className="glass-panel rounded-3xl border border-gray-800 overflow-hidden">
-            <div className="overflow-x-auto">
+          <div className="glass-panel rounded-3xl border border-gray-800 overflow-hidden w-full max-w-full">
+            <div className="overflow-x-auto w-full max-w-full">
               <table className="w-full text-left border-collapse text-xs">
                 {/* Header Row: Phone Cards */}
                 <thead>
