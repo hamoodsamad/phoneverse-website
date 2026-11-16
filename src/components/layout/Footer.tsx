@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, ShieldCheck, Zap, Sparkles, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, ShieldCheck, Zap, Sparkles, Heart, Lock } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -108,8 +108,15 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-gray-800/80 py-6 text-xs text-gray-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div>
-            © 2026 PhoneVerse Platform. All rights reserved. Primary Market: Pakistan (PKR).
+          <div className="flex items-center">
+            <span>© 2026 PhoneVerse Platform. All rights reserved. Primary Market: Pakistan (PKR).</span>
+            <Link
+              href="/admin"
+              title="Admin Portal"
+              className="inline-flex text-gray-800 hover:text-gray-400 ml-2 transition-colors p-1"
+            >
+              <Lock className="w-3 h-3" />
+            </Link>
           </div>
           <div className="flex items-center gap-6">
             <span>Primary Currency: <strong>PKR (₨)</strong></span>

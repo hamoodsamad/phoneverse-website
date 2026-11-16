@@ -277,21 +277,13 @@ export function Navbar() {
             )}
           </Link>
 
-          {/* User Account or Admin Link */}
+          {/* User Account */}
           {user ? (
             <div className="flex items-center gap-2">
-              {isAdmin && (
-                <Link
-                  href="/admin"
-                  className="hidden md:flex items-center gap-1 bg-purple-600/30 border border-purple-500/50 text-purple-300 px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-purple-600/50 transition-colors"
-                >
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Admin</span>
-                </Link>
-              )}
               <Link
                 href="/account"
                 className="p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-white"
+                title={user.full_name}
               >
                 <User className="w-4 h-4" />
               </Link>
@@ -355,11 +347,6 @@ export function Navbar() {
             <Link href="/orders" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800">
               📦 Track Orders
             </Link>
-            {isAdmin && (
-              <Link href="/admin" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg bg-purple-950/60 text-purple-300 border border-purple-800 font-bold">
-                🛡️ Admin Dashboard
-              </Link>
-            )}
           </div>
         </div>
       )}
