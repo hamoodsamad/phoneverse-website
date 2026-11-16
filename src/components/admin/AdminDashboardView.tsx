@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Smartphone, Brand, AutomationJob, SystemLog } from '@/types';
 import { useCurrency } from '@/context/CurrencyContext';
 import { useAuth } from '@/context/AuthContext';
+import { siteConfig } from '@/config/site';
 import {
   ShieldCheck,
   Smartphone as PhoneIcon,
@@ -33,7 +34,8 @@ import {
   UserCheck,
   LogOut,
   Search,
-  Filter
+  Filter,
+  ArrowLeft
 } from 'lucide-react';
 
 interface AdminDashboardViewProps {
@@ -502,10 +504,19 @@ export function AdminDashboardView({
             </form>
           )}
 
-          <div className="text-center pt-2">
+          <div className="pt-2 flex items-center justify-between border-t border-gray-800/80">
             <Link href="/" className="text-xs text-gray-400 hover:text-white transition-colors">
-              ← Return to Public Website
+              ← Return to Website
             </Link>
+            <a
+              href={siteConfig.portfolioUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-purple-300 hover:text-white font-bold px-3 py-1.5 rounded-xl bg-purple-950/70 border border-purple-800/70 hover:border-purple-400 transition-all shadow-sm"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Portfolio</span>
+            </a>
           </div>
         </div>
       </div>
@@ -533,7 +544,17 @@ export function AdminDashboardView({
         </div>
 
         {/* Header Right Controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <a
+            href={siteConfig.portfolioUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-purple-950/80 to-indigo-950/80 hover:from-purple-900 hover:to-indigo-900 border border-purple-700/60 hover:border-purple-400 text-purple-200 hover:text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-md"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Back to Portfolio</span>
+          </a>
+
           <Link
             href="/"
             className="px-3.5 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold flex items-center gap-1.5 transition-colors"

@@ -10,6 +10,7 @@ import { useCurrency } from '@/context/CurrencyContext';
 import { useAuth } from '@/context/AuthContext';
 import { mockSmartphones } from '@/data/mockData';
 import { Smartphone, CurrencyCode } from '@/types';
+import { siteConfig } from '@/config/site';
 import {
   Smartphone as PhoneIcon,
   Search,
@@ -23,7 +24,8 @@ import {
   User,
   ShieldCheck,
   Globe,
-  SlidersHorizontal
+  SlidersHorizontal,
+  ArrowLeft
 } from 'lucide-react';
 
 export function Navbar() {
@@ -83,13 +85,25 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-gray-800/80 bg-dark-900/85 backdrop-blur-xl">
       {/* Top micro bar for market and live status */}
-      <div className="bg-emerald-950/40 border-b border-emerald-900/20 py-1 px-4 text-[11px] text-gray-300 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span>🇵🇰 <strong>Pakistan Market Official:</strong> PTA Approved & Retail Verified Smartphone Index</span>
+      <div className="bg-emerald-950/40 border-b border-emerald-900/20 py-1.5 px-4 text-[11px] text-gray-300 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <a
+            href={siteConfig.portfolioUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/50 text-emerald-300 hover:text-white hover:border-emerald-400 font-extrabold transition-all shadow-sm hover:scale-105"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Back to Portfolio</span>
+          </a>
+
+          <div className="hidden sm:flex items-center gap-2 text-gray-400">
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>🇵🇰 <strong>Pakistan Market Official:</strong> PTA Approved & Retail Verified Smartphone Index</span>
+          </div>
         </div>
 
         <div className="flex items-center gap-4">
@@ -322,6 +336,15 @@ export function Navbar() {
           </form>
 
           <div className="flex flex-col gap-2 font-medium text-gray-300 text-sm">
+            <a
+              href={siteConfig.portfolioUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl bg-gradient-to-r from-emerald-950 to-cyan-950 border border-emerald-500/50 text-emerald-300 font-bold flex items-center gap-2 hover:text-white"
+            >
+              <ArrowLeft className="w-4 h-4 text-emerald-400" />
+              <span>← Back to Portfolio</span>
+            </a>
             <Link href="/smartphones" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800">
               📱 All Smartphones
             </Link>

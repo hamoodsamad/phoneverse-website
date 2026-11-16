@@ -33,6 +33,7 @@ Add the following keys in **Settings** > **Environment Variables**:
 | `NEXT_PUBLIC_APP_NAME` | Platform Name | `PhoneVerse 2026` |
 | `NEXT_PUBLIC_DEFAULT_CURRENCY` | Default Currency | `PKR` |
 | `NEXT_PUBLIC_PRIMARY_MARKET` | Market Region | `Pakistan` |
+| `NEXT_PUBLIC_PORTFOLIO_URL` | Back to Portfolio Link | `https://my-portfolio-ten-zeta-3wnea5nse7.vercel.app/` |
 | `DATABASE_URL` | PostgreSQL Connection String | `postgresql://user:pass@host:5432/db?sslmode=require` |
 | `JWT_SECRET` | 32+ character authentication secret | `your-secure-jwt-secret-key-32-chars` |
 | `CRON_SECRET` | Vercel Cron protection secret | `your-cron-secret-2026` |

@@ -5,7 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useCurrency } from '@/context/CurrencyContext';
 import { Smartphone } from '@/types';
-import { Sparkles, ArrowRight, Scale, ShieldCheck, Zap, Cpu, Camera, Battery } from 'lucide-react';
+import { siteConfig } from '@/config/site';
+import { Sparkles, ArrowRight, Scale, ShieldCheck, Zap, Cpu, Camera, Battery, ArrowLeft } from 'lucide-react';
 
 interface HeroSectionProps {
   flagships: Smartphone[];
@@ -29,10 +30,22 @@ export function HeroSection({ flagships }: HeroSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Heading, Value Props & Actions */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-semibold backdrop-blur-md">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Next-Gen 2026 Smartphone Intelligence • Pakistan Market</span>
+            {/* Pills row */}
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href={siteConfig.portfolioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-purple-500/20 border border-emerald-400/60 hover:border-emerald-300 text-white text-xs font-black transition-all shadow-glow hover:scale-105"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-emerald-400" />
+                <span>← Back to Portfolio</span>
+              </a>
+
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-semibold backdrop-blur-md">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Next-Gen 2026 Smartphone Intelligence • Pakistan Market</span>
+              </div>
             </div>
 
             <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.1]">

@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, ShieldCheck, Zap, Sparkles, Heart, Lock } from 'lucide-react';
+import { siteConfig } from '@/config/site';
+import { Phone, Mail, MapPin, ShieldCheck, Zap, Sparkles, Heart, Lock, ArrowLeft } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -94,6 +95,7 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Customer Care</h4>
           <ul className="space-y-2 text-xs">
+            <li><a href={siteConfig.portfolioUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline flex items-center gap-1 font-bold">← Back to Portfolio</a></li>
             <li><Link href="/cart" className="hover:text-emerald-400 transition-colors">Shopping Cart</Link></li>
             <li><Link href="/wishlist" className="hover:text-emerald-400 transition-colors">Wishlist</Link></li>
             <li><Link href="/orders" className="hover:text-emerald-400 transition-colors">Order Tracking</Link></li>
