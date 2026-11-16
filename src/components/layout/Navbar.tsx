@@ -84,14 +84,14 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-gray-800/80 bg-dark-900/85 backdrop-blur-xl">
-      {/* Top micro bar for market and live status */}
-      <div className="bg-emerald-950/40 border-b border-emerald-900/20 py-1.5 px-3 sm:px-4 text-[11px] text-gray-300 flex items-center justify-between gap-2 overflow-hidden w-full max-w-full">
+      {/* Top micro bar for market and live status (Hidden on mobile and tablets for ultra-clean header) */}
+      <div className="hidden lg:flex bg-emerald-950/40 border-b border-emerald-900/20 py-1.5 px-4 text-[11px] text-gray-300 items-center justify-between gap-2 overflow-hidden w-full max-w-full">
         <div className="flex items-center gap-2 shrink-0">
           <a
             href={siteConfig.portfolioUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/50 text-emerald-300 hover:text-white hover:border-emerald-400 font-extrabold transition-all shadow-sm text-[10px] sm:text-[11px] whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/50 text-emerald-300 hover:text-white hover:border-emerald-400 font-extrabold transition-all shadow-sm text-[11px] whitespace-nowrap"
           >
             <ArrowLeft className="w-3 h-3 text-emerald-400 shrink-0" />
             <span>Back to Portfolio</span>
@@ -106,11 +106,11 @@ export function Navbar() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-4 shrink-0 text-[10px] sm:text-[11px]">
-          <Link href="/news" className="hover:text-emerald-400 transition-colors hidden md:inline">
+        <div className="flex items-center gap-4 shrink-0 text-[11px]">
+          <Link href="/news" className="hover:text-emerald-400 transition-colors hidden lg:inline">
             Tech News 2026
           </Link>
-          <Link href="/reviews" className="hover:text-emerald-400 transition-colors hidden sm:inline">
+          <Link href="/reviews" className="hover:text-emerald-400 transition-colors">
             Verified Reviews
           </Link>
           <Link href="/price-tracker" className="text-emerald-400 hover:underline flex items-center gap-1 font-semibold whitespace-nowrap">
@@ -122,7 +122,7 @@ export function Navbar() {
 
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Brand Logo */}
+        {/* Brand Logo - Only element on the left on all devices */}
         <Link href="/" className="flex items-center gap-2 shrink-0 group">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center text-dark-900 shadow-glow font-black text-xl">
             <PhoneIcon className="w-5 h-5 text-dark-900 fill-current" />
@@ -137,8 +137,8 @@ export function Navbar() {
           </div>
         </Link>
 
-        {/* Global Live Search Bar */}
-        <div ref={searchRef} className="relative flex-1 max-w-md hidden md:block">
+        {/* Global Live Search Bar (Desktop only, >= 1024px) */}
+        <div ref={searchRef} className="relative flex-1 max-w-md hidden lg:block">
           <form onSubmit={handleSearchSubmit} className="relative">
             <input
               type="text"
@@ -193,7 +193,7 @@ export function Navbar() {
           )}
         </div>
 
-        {/* Center / Navigation Links */}
+        {/* Center / Navigation Links (Desktop only, >= 1024px) */}
         <nav className="hidden lg:flex items-center gap-5 text-sm font-medium text-gray-300">
           <Link href="/smartphones" className="hover:text-emerald-400 transition-colors">
             All Phones
@@ -214,10 +214,10 @@ export function Navbar() {
           </Link>
         </nav>
 
-        {/* Right side controls */}
+        {/* Right side controls - Hidden on all screens < 1024px, only hamburger remains on mobile */}
         <div className="flex items-center gap-2.5">
-          {/* Currency Switcher */}
-          <div ref={currencyRef} className="relative">
+          {/* Currency Switcher (Hidden on mobile/tablet -> in menu) */}
+          <div ref={currencyRef} className="relative hidden lg:block">
             <button
               onClick={() => setShowCurrencyDropdown(!showCurrencyDropdown)}
               className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-gray-900 border border-gray-700 text-xs font-bold text-gray-200 hover:border-emerald-500 transition-colors"
@@ -250,11 +250,11 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Compare Badge (Hidden on mobile to prevent overflow) */}
+          {/* Compare Badge (Hidden on mobile/tablet -> in menu) */}
           <Link
             href="/compare"
             title="Comparison Tray"
-            className="hidden md:flex relative p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-cyan-400 hover:border-cyan-500 transition-colors"
+            className="hidden lg:flex relative p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-cyan-400 hover:border-cyan-500 transition-colors"
           >
             <Scale className="w-4 h-4" />
             {compareCount > 0 && (
@@ -264,11 +264,11 @@ export function Navbar() {
             )}
           </Link>
 
-          {/* Wishlist Badge (Hidden on mobile to prevent overflow) */}
+          {/* Wishlist Badge (Hidden on mobile/tablet -> in menu) */}
           <Link
             href="/wishlist"
             title="Wishlist"
-            className="hidden md:flex relative p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-rose-400 hover:border-rose-500 transition-colors"
+            className="hidden lg:flex relative p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-rose-400 hover:border-rose-500 transition-colors"
           >
             <Heart className="w-4 h-4" />
             {wishlistCount > 0 && (
@@ -278,11 +278,11 @@ export function Navbar() {
             )}
           </Link>
 
-          {/* Shopping Cart Badge */}
+          {/* Shopping Cart Badge (Hidden on mobile/tablet -> in menu) */}
           <Link
             href="/cart"
             title="Shopping Cart"
-            className="relative p-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-dark-900 font-bold transition-colors shadow-glow"
+            className="hidden lg:flex relative p-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-dark-900 font-bold transition-colors shadow-glow"
           >
             <ShoppingCart className="w-4 h-4 fill-current" />
             {itemCount > 0 && (
@@ -292,9 +292,9 @@ export function Navbar() {
             )}
           </Link>
 
-          {/* User Account */}
+          {/* User Account / Sign In (Hidden on mobile/tablet -> in menu) */}
           {user ? (
-            <div className="flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-2">
               <Link
                 href="/account"
                 className="p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 hover:text-white"
@@ -306,74 +306,245 @@ export function Navbar() {
           ) : (
             <Link
               href="/account"
-              className="text-xs font-bold text-gray-300 hover:text-white px-3 py-2 rounded-xl border border-gray-700 bg-gray-900 hover:border-gray-500 transition-colors"
+              className="hidden lg:inline-flex text-xs font-bold text-gray-300 hover:text-white px-3 py-2 rounded-xl border border-gray-700 bg-gray-900 hover:border-gray-500 transition-colors"
             >
               Sign In
             </Link>
           )}
 
-          {/* Mobile hamburger menu toggle */}
+          {/* Mobile & Tablet hamburger menu toggle - ONLY item on right for all screens < 1024px */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 lg:hidden hover:text-white"
+            className="p-2.5 rounded-xl bg-gray-900 border border-gray-700 text-gray-300 lg:hidden hover:text-white transition-colors"
+            aria-label="Toggle Navigation Menu"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu - Opens right below header when clicked */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden glass-panel border-b border-gray-800 p-4 space-y-3 bg-dark-900">
-          <form onSubmit={handleSearchSubmit} className="relative mb-3">
+        <div className="lg:hidden glass-panel border-b border-gray-800 p-4 space-y-4 bg-dark-900/98 backdrop-blur-2xl animate-fade-in shadow-2xl">
+          {/* Back to Portfolio Button */}
+          <a
+            href={siteConfig.portfolioUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-2.5 px-3.5 rounded-2xl bg-gradient-to-r from-emerald-500/20 via-cyan-500/20 to-purple-500/20 border border-emerald-500/50 text-emerald-300 hover:text-white font-black flex items-center justify-between text-xs transition-all shadow-sm"
+          >
+            <div className="flex items-center gap-2">
+              <ArrowLeft className="w-4 h-4 text-emerald-400" />
+              <span>Back to Portfolio</span>
+            </div>
+            <span className="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/30">Official</span>
+          </a>
+
+          {/* Mobile Search Input */}
+          <form onSubmit={handleSearchSubmit} className="relative">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search phones..."
-              className="w-full bg-gray-800 border border-gray-700 rounded-xl pl-10 pr-4 py-2 text-sm text-white"
+              placeholder="Search smartphone models..."
+              className="w-full bg-gray-800 border border-gray-700 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500"
             />
             <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-3" />
           </form>
 
-          <div className="flex flex-col gap-2 font-medium text-gray-300 text-sm">
-            <a
-              href={siteConfig.portfolioUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl bg-gradient-to-r from-emerald-950 to-cyan-950 border border-emerald-500/50 text-emerald-300 font-bold flex items-center gap-2 hover:text-white"
+          {/* User Sign In / Account Card */}
+          {user ? (
+            <div className="p-3.5 bg-gray-900/90 rounded-2xl border border-gray-800 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
+                  <User className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white">{user.full_name}</div>
+                  <div className="text-[10px] text-gray-400">{user.email}</div>
+                </div>
+              </div>
+              <Link
+                href="/account"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-3 py-1.5 bg-emerald-500 text-dark-900 rounded-xl text-xs font-extrabold"
+              >
+                Dashboard
+              </Link>
+            </div>
+          ) : (
+            <div className="p-3.5 bg-gray-900/90 rounded-2xl border border-gray-800 flex items-center justify-between">
+              <div>
+                <div className="text-xs font-bold text-white">Customer Account</div>
+                <div className="text-[10px] text-gray-400">Sign in to track orders & prices</div>
+              </div>
+              <Link
+                href="/account"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-dark-900 rounded-xl text-xs font-black transition-colors shadow-glow"
+              >
+                Sign In
+              </Link>
+            </div>
+          )}
+
+          {/* Quick Badges Row (Shopping Cart, Saved Wishlist, Compare Tray) */}
+          <div className="grid grid-cols-3 gap-2">
+            {/* Cart */}
+            <Link
+              href="/cart"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-3 rounded-2xl bg-gray-900 border border-gray-800 flex flex-col items-center justify-center relative hover:border-emerald-500/50 transition-colors"
             >
-              <ArrowLeft className="w-4 h-4 text-emerald-400" />
-              <span>← Back to Portfolio</span>
-            </a>
-            <Link href="/smartphones" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800">
-              📱 All Smartphones
+              <div className="relative">
+                <ShoppingCart className="w-5 h-5 text-emerald-400" />
+                {itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2.5 bg-rose-600 text-white font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                    {itemCount}
+                  </span>
+                )}
+              </div>
+              <span className="text-[11px] font-bold text-gray-200 mt-1.5">Cart</span>
             </Link>
-            <Link href="/brands" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800">
-              🏷️ Popular Brands
+
+            {/* Wishlist (Heart Shape) */}
+            <Link
+              href="/wishlist"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-3 rounded-2xl bg-gray-900 border border-gray-800 flex flex-col items-center justify-center relative hover:border-rose-500/50 transition-colors"
+            >
+              <div className="relative">
+                <Heart className="w-5 h-5 text-rose-400" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-2 -right-2.5 bg-rose-500 text-white font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </div>
+              <span className="text-[11px] font-bold text-gray-200 mt-1.5">Wishlist</span>
             </Link>
-            <Link href="/compare" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800 flex items-center justify-between">
-              <span>⚖️ Smartphone Comparison</span>
-              {compareCount > 0 && <span className="bg-cyan-500 text-dark-900 text-xs font-bold px-2 py-0.5 rounded-full">{compareCount}</span>}
+
+            {/* Compare */}
+            <Link
+              href="/compare"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-3 rounded-2xl bg-gray-900 border border-gray-800 flex flex-col items-center justify-center relative hover:border-cyan-500/50 transition-colors"
+            >
+              <div className="relative">
+                <Scale className="w-5 h-5 text-cyan-400" />
+                {compareCount > 0 && (
+                  <span className="absolute -top-2 -right-2.5 bg-cyan-500 text-dark-900 font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                    {compareCount}
+                  </span>
+                )}
+              </div>
+              <span className="text-[11px] font-bold text-gray-200 mt-1.5">Compare</span>
             </Link>
-            <Link href="/wishlist" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800 flex items-center justify-between">
-              <span>❤️ Saved Wishlist</span>
-              {wishlistCount > 0 && <span className="bg-rose-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">{wishlistCount}</span>}
+          </div>
+
+          {/* Currency Switcher Row (PKR and others) */}
+          <div className="p-3 bg-gray-900/90 rounded-2xl border border-gray-800 flex items-center justify-between">
+            <div className="flex items-center gap-2 text-xs font-semibold text-gray-300">
+              <Globe className="w-4 h-4 text-emerald-400" />
+              <span>Currency:</span>
+            </div>
+            <div className="flex items-center gap-1 overflow-x-auto">
+              {availableCurrencies.map(c => (
+                <button
+                  key={c}
+                  onClick={() => setCurrency(c)}
+                  className={`px-2 py-1 rounded-lg text-[10px] font-extrabold transition-colors ${
+                    currency === c
+                      ? 'bg-emerald-500 text-dark-900 shadow-sm'
+                      : 'bg-gray-800 text-gray-400 hover:text-white'
+                  }`}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Main 5 Navigation Links & Menu Options */}
+          <div className="pt-2 border-t border-gray-800 space-y-1 text-sm font-medium text-gray-300">
+            <div className="text-[10px] uppercase font-bold text-gray-500 px-2 pb-1">
+              Main Navigation
+            </div>
+            <Link
+              href="/smartphones"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl hover:bg-gray-800 flex items-center gap-2.5 transition-colors"
+            >
+              <PhoneIcon className="w-4 h-4 text-emerald-400" />
+              <span>1. All Smartphones</span>
             </Link>
-            <Link href="/price-tracker" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800">
-              📉 Price Drop Tracker (PKR)
+
+            <Link
+              href="/brands"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl hover:bg-gray-800 flex items-center gap-2.5 transition-colors"
+            >
+              <SlidersHorizontal className="w-4 h-4 text-cyan-400" />
+              <span>2. Popular Brands</span>
             </Link>
-            <Link href="/ai-recommendations" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800 text-purple-300 font-bold">
-              ✨ AI Recommendation Engine
+
+            <Link
+              href="/compare"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl hover:bg-gray-800 flex items-center justify-between transition-colors"
+            >
+              <div className="flex items-center gap-2.5">
+                <Scale className="w-4 h-4 text-cyan-400" />
+                <span>3. Smartphone Comparison</span>
+              </div>
+              {compareCount > 0 && (
+                <span className="bg-cyan-500 text-dark-900 text-xs font-bold px-2 py-0.5 rounded-full">
+                  {compareCount}
+                </span>
+              )}
             </Link>
-            <Link href="/news" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800">
-              📰 Technology News
+
+            <Link
+              href="/price-tracker"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl hover:bg-gray-800 flex items-center gap-2.5 transition-colors"
+            >
+              <TrendingDown className="w-4 h-4 text-emerald-400" />
+              <span>4. Price Drop Tracker (PKR)</span>
             </Link>
-            <Link href="/reviews" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800">
-              ⭐ User Reviews
+
+            <Link
+              href="/ai-recommendations"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2.5 rounded-xl hover:bg-gray-800 flex items-center gap-2.5 text-purple-300 font-bold transition-colors"
+            >
+              <Sparkles className="w-4 h-4 text-purple-400 animate-pulse" />
+              <span>5. AI Recommendation Wizard</span>
             </Link>
-            <Link href="/orders" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-800">
-              📦 Track Orders
+
+            <div className="text-[10px] uppercase font-bold text-gray-500 px-2 pt-2 pb-1">
+              Community & Updates
+            </div>
+            <Link
+              href="/news"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 rounded-xl hover:bg-gray-800 flex items-center gap-2 text-xs transition-colors"
+            >
+              <span>📰 Technology News 2026</span>
+            </Link>
+            <Link
+              href="/reviews"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 rounded-xl hover:bg-gray-800 flex items-center gap-2 text-xs transition-colors"
+            >
+              <span>⭐ Customer Reviews</span>
+            </Link>
+            <Link
+              href="/orders"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 rounded-xl hover:bg-gray-800 flex items-center gap-2 text-xs transition-colors"
+            >
+              <span>📦 Track Orders</span>
             </Link>
           </div>
         </div>
