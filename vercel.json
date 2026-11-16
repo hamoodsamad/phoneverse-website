@@ -1,0 +1,27 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/smartphones",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/prices",
+      "schedule": "0 */4 * * *"
+    },
+    {
+      "path": "/api/cron/news",
+      "schedule": "30 */6 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization" }
+      ]
+    }
+  ]
+}
