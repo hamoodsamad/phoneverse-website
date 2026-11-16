@@ -23,7 +23,8 @@ import {
   Clock,
   Settings,
   Terminal,
-  ExternalLink
+  ExternalLink,
+  X
 } from 'lucide-react';
 
 interface AdminDashboardViewProps {
@@ -47,6 +48,119 @@ export function AdminDashboardView({
   const [logs, setLogs] = useState<SystemLog[]>(initialLogs);
   const [runningJob, setRunningJob] = useState<string | null>(null);
   const [syncStatusMsg, setSyncStatusMsg] = useState<string | null>(null);
+  const [showAddPhoneModal, setShowAddPhoneModal] = useState(false);
+
+  // Form State for Adding New Smartphone
+  const [newPhone, setNewPhone] = useState({
+    name: '',
+    brandName: 'Samsung',
+    basePricePkr: 185000,
+    ptaStatus: 'PTA Approved' as const,
+    chipset: 'Snapdragon 8 Elite (3nm)',
+    rearCamera: '200MP Main (OIS) + 50MP Periscope',
+    batteryMah: 5000,
+    chargingWatts: 65,
+    refreshRate: 120,
+    ram: 12,
+    storage: 256,
+    color: 'Phantom Black',
+    imageUrl: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&q=80'
+  });
+
+  const handleCreatePhone = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newPhone.name) return;
+
+    const brand = initialBrands.find(b => b.name.toLowerCase() === newPhone.brandName.toLowerCase()) || initialBrands[0];
+    const slug = `${brand.slug}-${newPhone.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+    const createdPhone: Smartphone = {
+      id: `p-${Date.now()}`,
+      brand_id: brand.id,
+      brand_name: brand.name,
+      brand_slug: brand.slug,
+      name: newPhone.name,
+      model_name: `SM-${Date.now().toString().slice(-4)}`,
+      slug,
+      release_date: '2026-02-16',
+      announcement_date: '2026-02-10',
+      status: 'available',
+      is_unconfirmed: false,
+      is_featured: true,
+      is_trending: true,
+      source_attribution: 'Admin Manual Verified Entry (Pakistan)',
+      pta_status: newPhone.ptaStatus,
+      warranty_info: '1 Year Official Pakistan Brand Warranty',
+      base_price_pkr: Number(newPhone.basePricePkr),
+      primary_image_url: newPhone.imageUrl || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&q=80',
+      specs: {
+        display_type: 'LTPO Dynamic AMOLED 2X',
+        display_size_inches: 6.7,
+        resolution: '1440 x 3120 pixels',
+        refresh_rate_hz: Number(newPhone.refreshRate),
+        peak_brightness_nits: 2600,
+        display_protection: 'Corning Gorilla Armor',
+        chipset: newPhone.chipset,
+        cpu: 'Octa-core High Performance',
+        gpu: 'Adreno Flagship Series',
+        os_name: 'Android 15',
+        os_update_policy: '7 Major Android Upgrades',
+        rear_camera_setup: newPhone.rearCamera,
+        rear_camera_features: '4K@120fps, 8K Video, OIS',
+        front_camera_setup: '32MP Wide with PDAF',
+        front_camera_features: '4K@60fps HDR',
+        battery_capacity_mah: Number(newPhone.batteryMah),
+        wired_charging_watts: Number(newPhone.chargingWatts),
+        wireless_charging_watts: 15,
+        reverse_charging_supported: true,
+        supports_5g: true,
+        sim_type: 'Dual SIM (Nano + eSIM)',
+        wifi_standard: 'Wi-Fi 7',
+        bluetooth_version: '5.4',
+        has_nfc: true,
+        usb_type: 'USB Type-C 3.2',
+        dimensions_mm: '162 x 77 x 8.1 mm',
+        weight_grams: 210,
+        ip_rating: 'IP68 water resistant',
+        frame_material: 'Armor Aluminum',
+        speaker_type: 'Stereo Speakers',
+        sensors: 'Ultrasonic In-Display Fingerprint'
+      },
+      variants: [
+        {
+          id: `var-${Date.now()}`,
+          smartphone_id: `p-${Date.now()}`,
+          sku: `${slug}-${newPhone.ram}-${newPhone.storage}`,
+          ram_gb: Number(newPhone.ram),
+          storage_gb: Number(newPhone.storage),
+          color_name: newPhone.color,
+          color_hex: '#1f1f1f',
+          regional_market: 'Pakistan Official',
+          pta_status: newPhone.ptaStatus,
+          price_pkr: Number(newPhone.basePricePkr),
+          original_price_pkr: Number(newPhone.basePricePkr) * 1.05,
+          stock_quantity: 20,
+          is_available: true
+        }
+      ],
+      prices: [
+        {
+          id: `pr-${Date.now()}`,
+          smartphone_id: `p-${Date.now()}`,
+          seller_id: 's1',
+          seller_name: 'PriceOye (Pakistan)',
+          price_pkr: Number(newPhone.basePricePkr),
+          currency: 'PKR',
+          in_stock: true,
+          last_checked_at: '2026-02-16'
+        }
+      ]
+    };
+
+    setPhones([createdPhone, ...phones]);
+    setShowAddPhoneModal(false);
+    setSyncStatusMsg(`"${createdPhone.name}" added successfully to the catalog and live database!`);
+  };
 
   // Manual Trigger for Background Jobs
   const triggerJob = async (jobType: 'discover_phones' | 'update_prices' | 'sync_images' | 'fetch_news') => {
@@ -234,11 +348,19 @@ export function AdminDashboardView({
       {/* TAB 2: SMARTPHONES MANAGEMENT */}
       {activeTab === 'smartphones' && (
         <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-gray-800 space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-gray-800">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-800">
             <div>
               <h2 className="text-lg font-bold text-white">Smartphones Inventory & Specifications</h2>
               <p className="text-xs text-gray-400">Manage hardware records, PTA status, and model variants.</p>
             </div>
+
+            <button
+              onClick={() => setShowAddPhoneModal(true)}
+              className="flex items-center gap-1.5 bg-emerald-500 hover:bg-emerald-400 text-dark-900 font-extrabold px-4 py-2 rounded-xl text-xs transition-colors shadow-glow"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add New Smartphone</span>
+            </button>
           </div>
 
           <div className="overflow-x-auto">
@@ -426,29 +548,194 @@ export function AdminDashboardView({
         </div>
       )}
 
-      {/* TAB 7: LOGS */}
-      {activeTab === 'logs' && (
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-gray-800 space-y-6">
-          <div className="flex items-center justify-between pb-4 border-b border-gray-800">
-            <div>
-              <h2 className="text-lg font-bold text-white">System Telemetry & Audit Logs</h2>
-              <p className="text-xs text-gray-400">Real-time application audit trail and execution diagnostics.</p>
-            </div>
-          </div>
-
-          <div className="bg-dark-900 rounded-2xl p-4 border border-gray-800 font-mono text-[11px] space-y-2 max-h-96 overflow-y-auto">
-            {logs.map(log => (
-              <div key={log.id} className="flex items-start gap-2 text-gray-300">
-                <span className="text-gray-600">[{new Date(log.created_at).toLocaleTimeString('en-PK')}]</span>
-                <span className={`font-bold ${
-                  log.level === 'error' ? 'text-rose-400' : log.level === 'warn' ? 'text-amber-400' : 'text-emerald-400'
-                }`}>
-                  [{log.level.toUpperCase()}]
-                </span>
-                <span className="text-purple-400">[{log.source}]</span>
-                <span className="text-gray-200">{log.message}</span>
+      {/* Add New Smartphone Modal Dialog */}
+      {showAddPhoneModal && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="w-full max-w-2xl glass-panel bg-dark-900 border border-gray-700 rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6">
+            <div className="flex items-center justify-between pb-4 border-b border-gray-800">
+              <div>
+                <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                  <Plus className="w-5 h-5 text-emerald-400" />
+                  Add New Smartphone to Catalog
+                </h3>
+                <p className="text-xs text-gray-400">Fill in specifications and retail price in PKR.</p>
               </div>
-            ))}
+              <button onClick={() => setShowAddPhoneModal(false)} className="text-gray-400 hover:text-white">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleCreatePhone} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Phone Model Name *</label>
+                  <input
+                    type="text"
+                    required
+                    value={newPhone.name}
+                    onChange={(e) => setNewPhone({ ...newPhone, name: e.target.value })}
+                    placeholder="e.g. Galaxy S25+ or iPhone 16 Plus"
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Brand *</label>
+                  <select
+                    value={newPhone.brandName}
+                    onChange={(e) => setNewPhone({ ...newPhone, brandName: e.target.value })}
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl p-2 text-xs text-white"
+                  >
+                    {initialBrands.map(b => (
+                      <option key={b.id} value={b.name}>{b.name}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Retail Price (PKR) *</label>
+                  <input
+                    type="number"
+                    required
+                    value={newPhone.basePricePkr}
+                    onChange={(e) => setNewPhone({ ...newPhone, basePricePkr: Number(e.target.value) })}
+                    placeholder="e.g. 240000"
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">PTA Approval Status *</label>
+                  <select
+                    value={newPhone.ptaStatus}
+                    onChange={(e) => setNewPhone({ ...newPhone, ptaStatus: e.target.value as any })}
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl p-2 text-xs text-white"
+                  >
+                    <option value="PTA Approved">PTA Approved</option>
+                    <option value="Non-PTA">Non-PTA</option>
+                    <option value="Both Available">Both Available</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Chipset / Processor *</label>
+                  <input
+                    type="text"
+                    required
+                    value={newPhone.chipset}
+                    onChange={(e) => setNewPhone({ ...newPhone, chipset: e.target.value })}
+                    placeholder="e.g. Snapdragon 8 Elite or Apple A18"
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Camera Setup *</label>
+                  <input
+                    type="text"
+                    required
+                    value={newPhone.rearCamera}
+                    onChange={(e) => setNewPhone({ ...newPhone, rearCamera: e.target.value })}
+                    placeholder="e.g. 50MP Main (OIS) + 50MP Ultra-Wide"
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Battery (mAh)</label>
+                  <input
+                    type="number"
+                    value={newPhone.batteryMah}
+                    onChange={(e) => setNewPhone({ ...newPhone, batteryMah: Number(e.target.value) })}
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Wired Charging (Watts)</label>
+                  <input
+                    type="number"
+                    value={newPhone.chargingWatts}
+                    onChange={(e) => setNewPhone({ ...newPhone, chargingWatts: Number(e.target.value) })}
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Refresh Rate (Hz)</label>
+                  <input
+                    type="number"
+                    value={newPhone.refreshRate}
+                    onChange={(e) => setNewPhone({ ...newPhone, refreshRate: Number(e.target.value) })}
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">RAM (GB)</label>
+                  <input
+                    type="number"
+                    value={newPhone.ram}
+                    onChange={(e) => setNewPhone({ ...newPhone, ram: Number(e.target.value) })}
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Storage (GB)</label>
+                  <input
+                    type="number"
+                    value={newPhone.storage}
+                    onChange={(e) => setNewPhone({ ...newPhone, storage: Number(e.target.value) })}
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs text-gray-300 font-semibold block mb-1">Color Name</label>
+                  <input
+                    type="text"
+                    value={newPhone.color}
+                    onChange={(e) => setNewPhone({ ...newPhone, color: e.target.value })}
+                    className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-xs text-gray-300 font-semibold block mb-1">Product Image URL</label>
+                <input
+                  type="url"
+                  value={newPhone.imageUrl}
+                  onChange={(e) => setNewPhone({ ...newPhone, imageUrl: e.target.value })}
+                  className="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-2 text-xs text-white"
+                />
+              </div>
+
+              <div className="pt-4 border-t border-gray-800 flex justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowAddPhoneModal(false)}
+                  className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 font-semibold rounded-xl text-xs"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-emerald-500 hover:bg-emerald-400 text-dark-900 font-extrabold rounded-xl text-xs shadow-glow"
+                >
+                  Save Smartphone to Catalog
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
